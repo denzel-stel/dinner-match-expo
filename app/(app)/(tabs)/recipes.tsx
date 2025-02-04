@@ -1,6 +1,6 @@
 import { StyleSheet, Text, View } from 'react-native';
-import RecipeCard from '../components/RecipeCard';
-import Session from '../components/Session';
+import RecipeCard from '../../components/RecipeCard';
+import Session from '../../components/Session';
 
 export default function Recipes() {
     return (

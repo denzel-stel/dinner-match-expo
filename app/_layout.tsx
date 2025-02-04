@@ -2,7 +2,7 @@ import { DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider } from '@re
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
 import * as React from 'react';
-import { router, Stack } from 'expo-router';
+import { router, Slot, Stack } from 'expo-router';
 import { StytchClient, StytchProvider, useStytchUser } from '@stytch/react-native';
 import { useEffect } from 'react';
 import { NativeStackNavigationOptions } from 'react-native-screens/lib/typescript/native-stack/types';
@@ -10,24 +10,15 @@ import { NativeStackNavigationOptions } from 'react-native-screens/lib/typescrip
 SplashScreen.preventAutoHideAsync();
 
 const stytch = new StytchClient(process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN ?? "");
-console.log("token", process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN)
+
 const App = ():JSX.Element => {
   
   const { user } = useStytchUser();
 
-  useEffect(() => {
-    if (user != null) {
-      router.replace('./(tabs)/Recipes', {relativeToDirectory: true})
-    }
-  }, [user])
-
   const defaultOptions: any = {headerShown:false};
   return (
     <StytchProvider stytch={stytch}>
-      <Stack>
-        <Stack.Screen name="login/Login"  options={defaultOptions} />
-        <Stack.Screen name="(tabs)" options={defaultOptions} />
-      </Stack>
+      <Slot></Slot>
     </StytchProvider>
   );
 }

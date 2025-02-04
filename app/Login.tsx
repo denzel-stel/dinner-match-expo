@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useStytch, StytchUI, useStytchUser, RNUIProducts, OTPMethods, OAuthProviders } from '@stytch/react-native';
 import { navigate } from 'expo-router/build/global-state/routing';
 import { Text } from 'react-native';
+import { router } from 'expo-router';
 
 
 
 const Login = (): JSX.Element  => {
-  console.log("LOGIN!")
   const config = {
     productConfig: {
       products: [RNUIProducts.emailMagicLinks, RNUIProducts.oauth, RNUIProducts.passwords, RNUIProducts.otp],
@@ -25,17 +25,17 @@ const Login = (): JSX.Element  => {
     },
   };
   const stytch = useStytch();
+
   const { user } = useStytchUser();
   useEffect(() => {
     if (user) {
-        console.log("Logged in!")
-    //   navigate('(tabs)');
+      console.log("user logged in !");
+      router.navigate("/(app)/(tabs)/profile");
     }
-  }, [user]);
-
+  }, [user])
+  
   return (
-    // <Text>Hello world!</Text>
-    <StytchUI client={stytch} config={config}></StytchUI>
+    <StytchUI  client={stytch} config={config}></StytchUI>
   );
 };
 
