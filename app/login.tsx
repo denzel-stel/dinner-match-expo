@@ -8,7 +8,7 @@ import stytchStyle from '@/assets/styles/stytch';
 
 
 const Login = (): JSX.Element  => {
-  console.log("Login page!");
+  console.log("login screen!")
   const config = {
     styles: stytchStyle,
     productConfig: {

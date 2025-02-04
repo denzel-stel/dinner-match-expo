@@ -5,6 +5,7 @@ import { Image, StyleSheet, Text, View } from "react-native";
 import { isTypedArray } from "util/types";
 import { Recipe} from "@dinner_match/database/models/Recipe";
 const RecipeCard = ({recipe}:  { recipe: Recipe }) => {
+    console.log("recipe!")
     return (
         <View style={style.wrapper}>
             <View >

@@ -4,7 +4,7 @@ import { useStytch, useStytchUser } from '@stytch/react-native';
 
 export default function AppLayout() {
   const { user } = useStytchUser();
-  console.log(user);
+  
   // Only require authentication within the (app) group's layout as users
   // need to be able to access the (auth) group and sign in again.
   if (!user) {

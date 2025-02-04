@@ -1,20 +1,21 @@
 import { StyleSheet, Text, View } from 'react-native';
 import RecipeCard from '@/components/recipes/RecipeCard';
 import {Recipe} from '@dinner_match/database/models/Recipe';
+import SwipeableRecipe from '@/components/recipes/Swipeable';
+
 export default function Recipes() {
 
     const mockRecipe: Recipe = {
         id: 1,
         name: "Delicious Butter Chicken.",
         calories: 100,
-        description: "test",
-        
+        description: "test",   
     }
-
-
     return (
         <View style={styles.container}>
-            <RecipeCard recipe={mockRecipe}></RecipeCard>
+            <SwipeableRecipe>
+                <RecipeCard recipe={mockRecipe}/>
+            </SwipeableRecipe>
         </View>
     );
 }
