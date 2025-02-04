@@ -3,14 +3,16 @@ import { useStytch, StytchUI, useStytchUser, RNUIProducts, OTPMethods, OAuthProv
 import { navigate } from 'expo-router/build/global-state/routing';
 import { Text } from 'react-native';
 import { router } from 'expo-router';
+import stytchStyle from '@/assets/styles/stytch';
 
 
 
 const Login = (): JSX.Element  => {
   console.log("Login page!");
   const config = {
+    styles: stytchStyle,
     productConfig: {
-      products: [RNUIProducts.emailMagicLinks, RNUIProducts.oauth, RNUIProducts.passwords, RNUIProducts.otp],
+      products: [RNUIProducts.passwords],
       emailMagicLinksOptions: {},
       oAuthOptions: {
         providers: [OAuthProviders.Google, OAuthProviders.Apple, OAuthProviders.Github],

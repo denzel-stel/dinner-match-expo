@@ -6,6 +6,7 @@ import { router, Slot, Stack } from 'expo-router';
 import { StytchClient, StytchProvider, useStytchUser } from '@stytch/react-native';
 import { useEffect } from 'react';
 import { NativeStackNavigationOptions } from 'react-native-screens/lib/typescript/native-stack/types';
+import { View } from 'react-native';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
@@ -14,7 +15,16 @@ const stytch = new StytchClient(process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN ?? "
 const App = ():JSX.Element => {
   return (
     <StytchProvider stytch={stytch}>
-      <Slot></Slot>
+      <View style={
+        {
+          alignContent: "center",
+          justifyContent: "center",
+          flex: 1
+        }
+      }>
+        <Slot></Slot>
+      </View>
+  
     </StytchProvider>
   );
 }
