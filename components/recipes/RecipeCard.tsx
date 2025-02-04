@@ -1,9 +1,10 @@
+import colors from "@/assets/styles/colors";
 import styles from "@/assets/styles/typography";
 import typography from "@/assets/styles/typography";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { isTypedArray } from "util/types";
-
-const RecipeCard = () => {
+import { Recipe} from "@dinner_match/database/models/Recipe";
+const RecipeCard = ({recipe}:  { recipe: Recipe }) => {
     return (
         <View style={style.wrapper}>
             <View >
@@ -13,7 +14,7 @@ const RecipeCard = () => {
                     />
             </View>
             <View style={style.card}>
-                <Text style={typography.h1}>Delicious butter chicken</Text>
+                <Text style={typography.h1}>{recipe.name}</Text>
             </View>
         </View>
        
@@ -23,6 +24,8 @@ const RecipeCard = () => {
 
 const style = StyleSheet.create({
     card: {
+        borderTopWidth: 4,
+        borderTopColor: colors.tintColor,
         padding: 20,
         borderBottomRightRadius: 16,
         borderBottomLeftRadius: 16,
@@ -32,6 +35,7 @@ const style = StyleSheet.create({
     thumbnail: {
         width: "100%",
         height: 400,
+   
         borderTopRightRadius: 16,
         borderTopLeftRadius: 16
     },
