@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import RecipeCard from '@/components/RecipeCard';
+import RecipeCard from '@/components/recipes/RecipeCard';
 
 export default function Recipes() {
     return (
@@ -12,7 +12,6 @@ export default function Recipes() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
     },
