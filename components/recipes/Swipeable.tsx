@@ -25,8 +25,16 @@ export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
   const y = useSharedValue(0);
 
   const onSnap = (snapX: number) => {
-    console.log("snap")
+    console.log("snap", snapX)
   };
+
+  const onSwipeLeft = () => {
+    console.log("swipe left");
+  };
+
+  const onSwipeRight = () => {
+    console.log("swipe right");
+  }
 
   const animatedStyle = useAnimatedStyle(() => {
     const rotateZ = interpolate(
@@ -36,7 +44,6 @@ export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
       Extrapolate.CLAMP
     ).toFixed(2)+"rad";
 
-    console.log("animate", x.value, y.value, rotateZ);
     return {
       position: 'absolute',
       left: 0,
@@ -60,13 +67,11 @@ export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
         {children}
       </Animated.View>
       <Interactable
-        snapPoints={[
-          { x: -SWIPE_THRESHOLD }, 
-          { x: 0 }, 
-          { x: SWIPE_THRESHOLD }
-        ]}
+        snapOffset={SWIPE_THRESHOLD}
         x={x}
         y={y}
+        onSwipeLeft={onSwipeLeft}
+        onSwipeRight={onSwipeRight}
         style={StyleSheet.absoluteFill}
         onSnap={onSnap}
       />

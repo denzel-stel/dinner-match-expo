@@ -8,14 +8,24 @@ interface SnapPoint {
 }
 
 interface InteractableProps {
-  snapPoints: SnapPoint[];
+  snapOffset: number;
   onSnap: (x: number) => void;
+  onSwipeRight: () => void;
+  onSwipeLeft: () => void;
   style: ViewStyle;
   x: SharedValue<number>;
   y: SharedValue<number>;
 }
 
-export default function Interactable({ style, x, y, snapPoints, onSnap }: InteractableProps) {
+export default function Interactable({ 
+  style, 
+  x, 
+  y, 
+  snapOffset, 
+  onSnap, 
+  onSwipeLeft, 
+  onSwipeRight 
+}: InteractableProps) {
   const translateX = x;
   const translateY = y;
   const context = useSharedValue({ x: 0, y: 0 });
@@ -31,25 +41,37 @@ export default function Interactable({ style, x, y, snapPoints, onSnap }: Intera
       translateX.value = event.translationX + context.value.x;
       translateY.value = event.translationY + context.value.y;
     })
-    .onEnd((event) => {
-      const points = snapPoints.map(point => point.x);
+    .onEnd((event) => {      
       const velocityX = event.velocityX;
+
+      // At least 20% of the way to the next point
+      const treshold = 0.2;
       
-      // Find nearest snap point
-      const nearestPoint = points.reduce((prev, curr) => 
-        Math.abs(curr - translateX.value) < Math.abs(prev - translateX.value) ? curr : prev
-      );
+      let nearestPoint = 0;
+  
+      const swipedOverTresholdDistance = Math.abs(event.translationX) > (snapOffset * treshold);
+      const swipedFastEnough = Math.abs(velocityX) > 2000;
+
+      if (swipedOverTresholdDistance || swipedFastEnough) {
+        // Snap to the nearest point in the correct direction
+        nearestPoint = event.translationX > 0 ? snapOffset : -snapOffset;
+      }
 
       // Apply spring animation to snap point
       translateX.value = withSpring(nearestPoint, {
         velocity: velocityX,
-        damping: 20,
-        stiffness: 90,
+        damping: 10,
+        stiffness: 95,
       });
       
       translateY.value = withSpring(0);
       
       runOnJS(onSnap)(nearestPoint);
+      if (nearestPoint > 0) {
+        runOnJS(onSwipeRight)();
+      } else {
+        runOnJS(onSwipeLeft)();
+      }
     });
 
   const animatedStyle = useAnimatedStyle(() => {
