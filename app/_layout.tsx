@@ -2,17 +2,39 @@ import { DarkTheme, DefaultTheme, NavigationContainer, ThemeProvider } from '@re
 import * as SplashScreen from 'expo-splash-screen';
 import 'react-native-reanimated';
 import * as React from 'react';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import Recipes from './(tabs)/Recipes';
-import { Stack } from 'expo-router';
+import { router, Stack } from 'expo-router';
+import { StytchClient, StytchProvider, useStytchUser } from '@stytch/react-native';
+import { useEffect } from 'react';
+import { NativeStackNavigationOptions } from 'react-native-screens/lib/typescript/native-stack/types';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-const RootLayout = () => {
+const stytch = new StytchClient("public-token-test-4ce57984-10aa-4a8c-ae89-92decf949fb2");
+
+const App = ():JSX.Element => {
+  console.log(process.env.STYTCH_PUBLIC_TOKEN)
+  const { user } = useStytchUser();
+  useEffect(() => {
+    if (user) console.log("user!");
+    else {
+      console.log("No user!")
+    }
+    if (user) {
+      router.replace('/(tabs)/Recipes')
+    }
+    else {
+      router.replace('/login/Login');
+    }
+  }, [user])
+
+  const defaultOptions: any = {headerShown:false};
   return (
-    <Stack>
-      <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-    </Stack>
+    <StytchProvider stytch={stytch}>
+      <Stack>
+        <Stack.Screen name="/login/Login"  options={defaultOptions} />
+        <Stack.Screen name="(tabs)" options={defaultOptions} />
+      </Stack>
+    </StytchProvider>
   );
 }
-export default RootLayout;
+export default App;
