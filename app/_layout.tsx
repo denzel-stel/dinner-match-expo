@@ -12,10 +12,6 @@ SplashScreen.preventAutoHideAsync();
 const stytch = new StytchClient(process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN ?? "");
 
 const App = ():JSX.Element => {
-  
-  const { user } = useStytchUser();
-
-  const defaultOptions: any = {headerShown:false};
   return (
     <StytchProvider stytch={stytch}>
       <Slot></Slot>

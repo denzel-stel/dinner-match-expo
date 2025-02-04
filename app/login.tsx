@@ -7,6 +7,7 @@ import { router } from 'expo-router';
 
 
 const Login = (): JSX.Element  => {
+  console.log("Login page!");
   const config = {
     productConfig: {
       products: [RNUIProducts.emailMagicLinks, RNUIProducts.oauth, RNUIProducts.passwords, RNUIProducts.otp],
@@ -29,13 +30,12 @@ const Login = (): JSX.Element  => {
   const { user } = useStytchUser();
   useEffect(() => {
     if (user) {
-      console.log("user logged in !");
-      router.navigate("/(app)/(tabs)/profile");
+      router.navigate("/(app)/(tabs)");
     }
   }, [user])
   
   return (
-    <StytchUI  client={stytch} config={config}></StytchUI>
+    <StytchUI client={stytch} config={config}></StytchUI>
   );
 };
 
