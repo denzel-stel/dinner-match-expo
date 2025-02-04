@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useStytch, StytchUI, useStytchUser, RNUIProducts, OTPMethods, OAuthProviders } from '@stytch/react-native';
 import { navigate } from 'expo-router/build/global-state/routing';
+import { Text } from 'react-native';
 
 
 
@@ -33,6 +34,7 @@ const Login = (): JSX.Element  => {
   }, [user]);
 
   return (
+    // <Text>Hello world!</Text>
     <StytchUI client={stytch} config={config}></StytchUI>
   );
 };

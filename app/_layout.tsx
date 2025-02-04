@@ -9,10 +9,9 @@ import { NativeStackNavigationOptions } from 'react-native-screens/lib/typescrip
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
 
-const stytch = new StytchClient("public-token-test-4ce57984-10aa-4a8c-ae89-92decf949fb2");
-
+const stytch = new StytchClient(process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN ?? "");
+console.log("token", process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN)
 const App = ():JSX.Element => {
-  console.log(process.env.STYTCH_PUBLIC_TOKEN)
   const { user } = useStytchUser();
   useEffect(() => {
     if (user) console.log("user!");
@@ -27,11 +26,11 @@ const App = ():JSX.Element => {
     }
   }, [user])
 
-  const defaultOptions: any = {headerShown:false};
+  const defaultOptions: any = {headerShown:true};
   return (
     <StytchProvider stytch={stytch}>
       <Stack>
-        <Stack.Screen name="/login/Login"  options={defaultOptions} />
+        <Stack.Screen name="login/Login"  options={defaultOptions} />
         <Stack.Screen name="(tabs)" options={defaultOptions} />
       </Stack>
     </StytchProvider>
