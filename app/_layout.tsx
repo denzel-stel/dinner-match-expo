@@ -12,21 +12,16 @@ SplashScreen.preventAutoHideAsync();
 const stytch = new StytchClient(process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN ?? "");
 console.log("token", process.env.EXPO_PUBLIC_STYTCH_PUBLIC_TOKEN)
 const App = ():JSX.Element => {
+  
   const { user } = useStytchUser();
+
   useEffect(() => {
-    if (user) console.log("user!");
-    else {
-      console.log("No user!")
-    }
-    if (user) {
-      router.replace('/(tabs)/Recipes')
-    }
-    else {
-      router.replace('/login/Login');
+    if (user != null) {
+      router.replace('./(tabs)/Recipes', {relativeToDirectory: true})
     }
   }, [user])
 
-  const defaultOptions: any = {headerShown:true};
+  const defaultOptions: any = {headerShown:false};
   return (
     <StytchProvider stytch={stytch}>
       <Stack>
