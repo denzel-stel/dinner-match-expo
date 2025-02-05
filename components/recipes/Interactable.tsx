@@ -26,6 +26,7 @@ export default function Interactable({
   onSwipeLeft, 
   onSwipeRight 
 }: InteractableProps) {
+
   const translateX = x;
   const translateY = y;
   const context = useSharedValue({ x: 0, y: 0 });
@@ -41,37 +42,39 @@ export default function Interactable({
       translateX.value = event.translationX + context.value.x;
       translateY.value = event.translationY + context.value.y;
     })
-    .onEnd((event) => {      
-      const velocityX = event.velocityX;
-
-      // At least 20% of the way to the next point
-      const treshold = 0.2;
-      
+    .onEnd((event) => {           
       let nearestPoint = 0;
-  
-      const swipedOverTresholdDistance = Math.abs(event.translationX) > (snapOffset * treshold);
-      const swipedFastEnough = Math.abs(velocityX) > 2000;
+          // At least 20% of the way to the next point
+      const treshold = 0.3;
 
-      if (swipedOverTresholdDistance || swipedFastEnough) {
+      const swipedOverTresholdDistance = Math.abs(event.translationX) > (snapOffset * treshold);
+      const swipedFastEnough = Math.abs(event.velocityX) > 2000;
+
+      if (swipedFastEnough || swipedOverTresholdDistance) {
         // Snap to the nearest point in the correct direction
         nearestPoint = event.translationX > 0 ? snapOffset : -snapOffset;
+        translateX.value = nearestPoint;
+        translateY.value = 0;
+        if (nearestPoint > 0) {
+          runOnJS(onSwipeRight)();
+        } else {
+          runOnJS(onSwipeLeft)();
+        }
       }
 
-      // Apply spring animation to snap point
-      translateX.value = withSpring(nearestPoint, {
-        velocity: velocityX,
-        damping: 10,
-        stiffness: 95,
-      });
-      
-      translateY.value = withSpring(0);
-      
-      runOnJS(onSnap)(nearestPoint);
-      if (nearestPoint > 0) {
-        runOnJS(onSwipeRight)();
-      } else {
-        runOnJS(onSwipeLeft)();
+      // Snap back
+      else {
+        // Apply spring animation to snap point
+        translateX.value = withSpring(0, {
+          velocity: event.velocityX,
+          damping: 300,
+          stiffness: 50,
+        });
+        
+        translateY.value = withSpring(0);
       }
+ 
+      runOnJS(onSnap)(nearestPoint);
     });
 
   const animatedStyle = useAnimatedStyle(() => {

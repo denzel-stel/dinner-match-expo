@@ -4,14 +4,14 @@ import typography from "@/assets/styles/typography";
 import { Image, StyleSheet, Text, View } from "react-native";
 import { isTypedArray } from "util/types";
 import { Recipe} from "@dinner_match/database/models/Recipe";
+import { faker } from "@faker-js/faker/.";
 const RecipeCard = ({recipe}:  { recipe: Recipe }) => {
-    console.log("recipe!")
     return (
         <View style={style.wrapper}>
             <View >
                 <Image
                        style={style.thumbnail}
-                        source={{uri: "https://foodish-api.com/images/butter-chicken/butter-chicken13.jpg"}}
+                        source={{uri: faker.image.urlPicsumPhotos({ width: 128 })}}
                     />
             </View>
             <View style={style.card}>
@@ -25,6 +25,7 @@ const RecipeCard = ({recipe}:  { recipe: Recipe }) => {
 
 const style = StyleSheet.create({
     card: {
+        backgroundColor: "white",
         borderTopWidth: 4,
         borderTopColor: colors.tintColor,
         padding: 20,

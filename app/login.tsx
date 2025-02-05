@@ -22,7 +22,7 @@ const Login = (): JSX.Element  => {
         expirationMinutes: 10,
       },
       sessionOptions: {
-        sessionDurationMinutes: 30,
+        sessionDurationMinutes: 60,
       },
       passwordOptions: {},
     },

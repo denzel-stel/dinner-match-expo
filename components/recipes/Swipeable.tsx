@@ -9,31 +9,40 @@ import Animated, {
 import Interactable from "./Interactable";
 
 const { width, height } = Dimensions.get("window");
-const PHI = (1 + Math.sqrt(5)) / 2;
-const DELTA_X = width / 2;
 const CARD_WIDTH = width - 32;
 const CARD_HEIGHT = height
+const PHI = (1 + Math.sqrt(5)) / 2;
+const DELTA_X = width / 2;
+
 const ALPHA = Math.PI / 12;
 const SWIPE_THRESHOLD = width * Math.cos(ALPHA) + height * Math.sin(ALPHA);
 
 interface SwipeableRecipeProps {
   children: JSX.Element;
+  onSwipeLeft: () => void;
+  onSwipeRight: () => void;
 }
 
-export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
+export default function SwipeableRecipe({ children, onSwipeLeft, onSwipeRight }: SwipeableRecipeProps) {
   const x = useSharedValue(0);
   const y = useSharedValue(0);
 
   const onSnap = (snapX: number) => {
-    console.log("snap", snapX)
+//    console.log(snapX); 
   };
 
-  const onSwipeLeft = () => {
-    console.log("swipe left");
+  const onInteractableSwipeLeft = () => {
+    onSwipeLeft();
   };
 
-  const onSwipeRight = () => {
-    console.log("swipe right");
+  /**
+   * This function is called when the user swipes right.
+   * It is only called if the user swipes more than the threshold distance.
+   * @function
+   */
+
+  const onInteractableSwipeRight = () => {
+    onSwipeRight();
   }
 
   const animatedStyle = useAnimatedStyle(() => {
@@ -60,8 +69,7 @@ export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
 
   return (
     <View style={{
-      width: CARD_WIDTH,
-      height: CARD_HEIGHT
+      flex:1
     }}>
       <Animated.View style={animatedStyle}>
         {children}
@@ -70,8 +78,8 @@ export default function SwipeableRecipe({ children }: SwipeableRecipeProps) {
         snapOffset={SWIPE_THRESHOLD}
         x={x}
         y={y}
-        onSwipeLeft={onSwipeLeft}
-        onSwipeRight={onSwipeRight}
+        onSwipeLeft={onInteractableSwipeLeft}
+        onSwipeRight={onInteractableSwipeRight}
         style={StyleSheet.absoluteFill}
         onSnap={onSnap}
       />
