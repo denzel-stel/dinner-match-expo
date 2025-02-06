@@ -25,6 +25,7 @@
     "@stytch/react-native-inappbrowser-reborn": "^3.7.2",
     "@stytch/vanilla-js": "^5.14.0",
     "axios": "^1.7.9",
+    "cors": "^2.8.5",
     "expo": "~52.0.28",
     "expo-blur": "~14.0.3",
     "expo-constants": "~17.0.4",
