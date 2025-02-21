@@ -13,8 +13,13 @@ const Test = () => {
         // }).catch((err) => {
         //     console.log("error", err)
         // })
-        const response = await axios.get("https://humble-dane-fun.ngrok-free.app/auth/recipes", {timeout: 5000});
-        console.log("success", response)
+        try {
+            const response = await axios.get("https://humble-dane-fun.ngrok-free.app", {timeout: 5000, withCredentials: true});
+            console.log("success", response)
+        } catch (e) {
+            console.log("error!", e);
+        }
+ 
         // getRecipes().then((res) => {
         //     console.log("success", res)
         // }).catch((err) => {

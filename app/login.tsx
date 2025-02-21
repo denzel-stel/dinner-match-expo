@@ -1,7 +1,5 @@
 import React, { useEffect } from 'react';
 import { useStytch, StytchUI, useStytchUser, RNUIProducts, OTPMethods, OAuthProviders } from '@stytch/react-native';
-import { navigate } from 'expo-router/build/global-state/routing';
-import { Text } from 'react-native';
 import { router } from 'expo-router';
 import stytchStyle from '@/assets/styles/stytch';
 
@@ -31,7 +29,9 @@ const Login = (): JSX.Element  => {
 
   const { user } = useStytchUser();
   useEffect(() => {
+    // user is authenticated
     if (user) {
+      
       router.navigate("/(app)/(tabs)");
     }
   }, [user])
