@@ -5,8 +5,12 @@ const getUser = async (id:number): Promise<AxiosResponse>  => {
     return axios.get("/auth/users/" + id);
 }
 
+const getUserByStych = async (uuid:string): Promise<AxiosResponse>  => {
+    return axios.get("/auth/users/stytch/" + uuid);
+}
 const createUser = async (user: NewUser): Promise<AxiosResponse>  => {
     return axios.post("/auth/users", user);
 }
 
-export { getUser, createUser }
+
+export { getUser, createUser, getUserByStych }

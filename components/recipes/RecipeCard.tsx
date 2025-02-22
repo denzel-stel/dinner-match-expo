@@ -8,11 +8,8 @@ import { faker } from "@faker-js/faker/.";
 const RecipeCard = ({recipe}:  { recipe: Recipe }) => {
     return (
         <View style={style.wrapper}>
-            <View >
-                <Image
-                       style={style.thumbnail}
-                        source={{uri: faker.image.urlPicsumPhotos({ width: 128 })}}
-                    />
+            <View style={style.thumbnail} >
+               
             </View>
             <View style={style.card}>
                 <Text style={typography.h1}>{recipe.name}</Text>
@@ -37,7 +34,7 @@ const style = StyleSheet.create({
     thumbnail: {
         width: "100%",
         height: 400,
-   
+        backgroundColor: colors.tintColor,
         borderTopRightRadius: 16,
         borderTopLeftRadius: 16
     },

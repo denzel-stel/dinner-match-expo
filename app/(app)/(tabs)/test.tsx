@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios from "@/controllers/axios";
 import { Button, Text, View } from "react-native"
 
 const Test = () => {
@@ -14,7 +14,7 @@ const Test = () => {
         //     console.log("error", err)
         // })
         try {
-            const response = await axios.get("https://humble-dane-fun.ngrok-free.app", {timeout: 5000, withCredentials: true});
+            const response = await axios.get("https://humble-dane-fun.ngrok-free.app", {timeout: 5000, withCredentials: true,});
             console.log("success", response)
         } catch (e) {
             console.log("error!", e);
