@@ -4,7 +4,6 @@ import * as React from 'react';
 import { router, Slot, Stack } from 'expo-router';
 import { StytchClient, StytchProvider, useStytchUser } from '@stytch/react-native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
-import { SafeAreaView, Text } from 'react-native';
 import SessionAuthentication from '@/components/SessionAuthentication';
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 // SplashScreen.preventAutoHideAsync();
