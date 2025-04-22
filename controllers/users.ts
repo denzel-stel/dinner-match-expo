@@ -9,6 +9,7 @@ const getUserByStych = async (uuid:string): Promise<AxiosResponse>  => {
     return axios.get("/auth/users/stytch/" + uuid);
 }
 const createUser = async (user: NewUser): Promise<AxiosResponse>  => {
+    console.log(user);
     return axios.post("/auth/users", user);
 }
 

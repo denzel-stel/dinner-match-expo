@@ -7,6 +7,7 @@ class UsersService {
     async persistStytchUserLocally(stytchUser: User): Promise<void>  {
       try {
         const response = await getUserByStych(stytchUser.user_id);
+        console.log("frontend response", response);
         if (response.status === 200) {
           return;
         }
