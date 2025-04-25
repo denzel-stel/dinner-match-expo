@@ -17,14 +17,14 @@
     },
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.dinner_match"
+      "bundleIdentifier": "com.dinnermatch"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.dinner_match"
+      "package": "com.dinnermatch"
     },
     "web": {
       "bundler": "metro",
