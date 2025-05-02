@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
     h1: {
         fontSize: 32,
         fontWeight: "medium",
+        fontFamily: "RobotoSerif_400Regular",
     },
     h2: {
         fontSize: 24,
