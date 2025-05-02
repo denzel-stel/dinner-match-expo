@@ -1,9 +1,8 @@
 import { Text } from 'react-native';
 import { Redirect, Stack } from 'expo-router';
-import { useStytch, useStytchUser } from '@stytch/react-native';
 
 export default function AppLayout() {
-  const { user } = useStytchUser();
+  const user = false;
   
   // Only require authentication within the (app) group's layout as users
   // need to be able to access the (auth) group and sign in again.

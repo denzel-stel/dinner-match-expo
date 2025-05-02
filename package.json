@@ -15,17 +15,12 @@
     "preset": "jest-expo"
   },
   "dependencies": {
-    "@clerk/clerk-expo": "^2.9.15",
     "@dinner_match/database": "../database",
     "@expo/vector-icons": "^14.0.2",
     "@faker-js/faker": "^9.4.0",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
-    "@stytch/react": "^19.2.0",
-    "@stytch/react-native": "^0.44.1",
-    "@stytch/react-native-inappbrowser-reborn": "^3.7.2",
-    "@stytch/vanilla-js": "^5.14.0",
     "axios": "^1.7.9",
     "cors": "^2.8.5",
     "expo": "~52.0.28",
