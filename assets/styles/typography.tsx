@@ -3,13 +3,16 @@ import { StyleSheet } from "react-native";
 const styles = StyleSheet.create({
     h1: {
         fontSize: 32,
-        fontWeight: "medium",
-        fontFamily: "RobotoSerif_400Regular",
+        fontFamily: "RobotoSerif_500Medium",
     },
     h2: {
-        fontSize: 24,
-        fontWeight: "medium",
-        color: "#5A5A5A"
+        fontSize: 26,
+        fontFamily: "RobotoSerif_500Medium",
+    },
+    label: {
+        fontSize: 16,
+        fontFamily: "RobotoSerif_400Regular",
+        color: "#6C6C6C"
     },
     p: {
         fontSize: 16,

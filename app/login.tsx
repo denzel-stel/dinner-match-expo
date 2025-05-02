@@ -1,7 +1,8 @@
-import styles from "@/assets/styles/typography";
-import Container from "@/components/Container";
+import typographyStyles from "@/assets/styles/typography";
+import inputStyles from "@/assets/styles/input";
+import PrimaryButton from "@/components/Button";
+import { Text, TextInput, View } from "react-native";
 import { useState } from "react";
-import { Button, Text, TextInput, View } from "react-native";
 
 const LogIn = (): JSX.Element => {
     const [email, setEmail] = useState('');
@@ -12,26 +13,35 @@ const LogIn = (): JSX.Element => {
     };
   
     return (
-      <View>
-        <Text style={styles.h1}>Inloggen</Text>
-        <Text>Email</Text>
+      <View style={{
+        flex: 1,
+        justifyContent: "center",
+        
+      }}>
+        <Text style={{
+            ...typographyStyles.h1,
+            paddingBottom: 10,
+        }}>Inloggen</Text>
+        <Text style={inputStyles.label}>Email</Text>
         <TextInput
         placeholder="Enter email"
+        style={inputStyles.textInput}
         value={email}
         onChangeText={setEmail}
         autoCapitalize="none"
         keyboardType="email-address"
         />
 
-        <Text>Password</Text>
+        <Text style={inputStyles.label}>Password</Text>
         <TextInput
+        style={inputStyles.textInput}
         placeholder="Enter password"
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         />
 
-        <Button title="Login" onPress={handleLogin} />
+        <PrimaryButton onPress={handleLogin} text="Inloggen" />
       </View>
     );
 }
