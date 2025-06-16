@@ -16,8 +16,6 @@ const Register = (): JSX.Element => {
     useEffect(() => {
         if (password !== verifyPassword) {
             Alert.alert('Passwords do not match');
-        } else {
-            Alert.alert('Passwords do match');
         }
     }, [password, verifyPassword]);
 
